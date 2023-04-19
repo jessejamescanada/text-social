@@ -5,7 +5,7 @@ import axios, { AxiosError } from 'axios'
 import Link from 'next/link'
 import Image from 'next/image'
 import toast from 'react-hot-toast'
-import { RiDeleteBin6Line } from 'react-icons/Ri'
+import { RiDeleteBin6Line } from 'react-icons/ri'
 import userImage from '../public/userImage.png'
 
 const AddComment = ({ postId, comments, id, email, session }) => {

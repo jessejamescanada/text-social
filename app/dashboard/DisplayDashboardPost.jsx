@@ -2,7 +2,7 @@
 import { QueryClient, useMutation, useQueryClient } from '@tanstack/react-query'
 import axios from 'axios'
 import toast from 'react-hot-toast'
-import { RiDeleteBin6Line } from 'react-icons/Ri'
+import { RiDeleteBin6Line } from 'react-icons/ri'
 
 const DisplayDashboardPost = ({ id, title }) => {
   const queryClient = useQueryClient()
