@@ -3,6 +3,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import axios from 'axios'
 import Image from 'next/image'
 import FetchUsersPosts from '../../../components/FetchUsersPosts'
+import userImage from '../../../public/userImage.png'
 
 const fetchUser = async (slug) => {
   const response = await axios.get(`/api/user/${slug}`)
@@ -22,7 +23,7 @@ const UsersPage = ({ params: { slug } }) => {
       <div className='flex flex-col sm:flex-row w-full sm:w-1/2 justify-center items-center my-4'>
         {data.image && (
           <Image
-            src={data.image}
+            src={data.image ? data.image : userImage}
             height={80}
             width={80}
             alt='image'
