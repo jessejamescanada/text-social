@@ -12,6 +12,7 @@ const AddComment = ({ postId, comments, id, email, session }) => {
   const [title, setTitle] = useState('')
   const [addComment, setAddComment] = useState(true)
   const [error, setError] = useState(false)
+  const [showComment, setShowComment] = useState(false)
   const queryClient = useQueryClient()
 
   // add comment
@@ -37,7 +38,7 @@ const AddComment = ({ postId, comments, id, email, session }) => {
         setError(false)
       }, 2000)
     }
-
+    setShowComment(true)
     mutate({ title, postId })
   }
 
@@ -69,7 +70,8 @@ const AddComment = ({ postId, comments, id, email, session }) => {
   }
 
   return (
-    <div className='w-4/5 flex flex-col items-center justify-center'>
+    // comment form
+    <div className='w-full px-2 lg:px-[70px] flex flex-col items-center justify-center'>
       {error ? (
         <p className='font-bold text-red-600'>
           Can`&apos;`t leave an empty comment
@@ -110,12 +112,18 @@ const AddComment = ({ postId, comments, id, email, session }) => {
           ''
         )}
       </form>
-
-      {comments
+      {/* display comments */}
+      <h2
+        className='font-bold text-md cursor-pointer'
+        onClick={() => setShowComment((prev) => !prev)}
+      >
+        {comments ? comments.length : '0'} Comments
+      </h2>
+      {showComment && comments
         ? comments.map((item) => (
             <div
               key={item.id}
-              className='w-full sm:w-4/5 flex flex-col  my-2 bg-gray-200 text-gray-800 hover:bg-slate-300 px-4 py-2 rounded-lg shadow-[0px_2px_4px_-2px_rgba(255,255,255,1)] '
+              className='w-full  flex flex-col  my-2 bg-gray-200 text-gray-800 hover:bg-slate-300 px-4 py-2 rounded-lg shadow-[0px_2px_4px_-2px_rgba(255,255,255,1)] '
             >
               <div className='w-full justify-between flex items-center gap-2'>
                 <Link

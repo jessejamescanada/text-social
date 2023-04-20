@@ -69,7 +69,7 @@ const DisplayAllPosts = ({
 
   return (
     <div className='w-full flex text-gray-700 px-4'>
-      <div className='flex flex-col w-full md:w-1/2 justify-center items-center mx-auto bg-gradient-to-br from-slate-900 to-slate-500 text-gray-300 mb-8 pt-4  pb-3 rounded-lg shadow-[0px_2px_4px_-2px_rgba(255,255,255,1)] '>
+      <div className='flex flex-col w-full md:w-1/2 justify-center items-center mx-auto bg-gradient-to-br from-slate-900 to-slate-500 text-gray-300 mb-8 pt-4  pb-10 rounded-lg shadow-[0px_2px_4px_-2px_rgba(255,255,255,1)] '>
         <div className='flex w-full justify-evenly sm:justify-between'>
           <div className='w-[1px] lg:w-[125px]'></div>
           <Link
