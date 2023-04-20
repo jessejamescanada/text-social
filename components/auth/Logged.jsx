@@ -7,7 +7,9 @@ const Logged = ({ image }) => {
   return (
     <li className='flex gap-6 items-center'>
       <button
-        onClick={() => signOut()}
+        onClick={() =>
+          signOut({ callbackUrl: 'https://text-social.vercel.app/' })
+        }
         className='text-sm bg-gray-700 text-white py-2 px-6 rounded-xl disabled:opacity-25'
       >
         Sign Out
