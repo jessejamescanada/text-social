@@ -21,15 +21,16 @@ const UsersPage = ({ params: { slug } }) => {
   return (
     <div className='w-full flex flex-col items-center justify-center'>
       <div className='flex flex-col sm:flex-row w-full sm:w-1/2 justify-center items-center my-4'>
-        {data.image && (
-          <Image
-            src={data.image ? data.image : userImage}
-            height={80}
-            width={80}
-            alt='image'
-            className='rounded-md'
-          />
-        )}
+        {data.image ||
+          (userImage && (
+            <Image
+              src={data.image ? data.image : userImage}
+              height={80}
+              width={80}
+              alt='image'
+              className='rounded-full'
+            />
+          ))}
         <div className='flex flex-col ml-5'>
           <div className='flex flex-row gap-4 items-center mb-2'>
             <h3>{data.name}</h3>
