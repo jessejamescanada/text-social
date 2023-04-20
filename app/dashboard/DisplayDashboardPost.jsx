@@ -37,7 +37,13 @@ const DisplayDashboardPost = ({ id, title }) => {
             <RiDeleteBin6Line className='text-gray-200' />
           </button>
         </div>
-        <p className=' px-5 break-all'>{title}</p>
+        <div className=' my-8  h-[220px] lg:h-[180px] w-full px-2 lg:px-[70px]'>
+          <div className='bg-gray-950 flex items-center justify-center  h-full w-full p-3 sm:p-5 rounded-lg'>
+            <p className=' break-normal  text-center font-semibold text-lg tracking-wide'>
+              {title}
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   )
