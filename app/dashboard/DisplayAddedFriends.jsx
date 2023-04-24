@@ -29,7 +29,6 @@ const DisplayAddedFriends = () => {
           {data
             ? data.friends.map((friend) => (
                 <div key={friend.id}>
-                  {/* <p>{friend.name ? friend.name : friend.email}</p> */}
                   <Link
                     href={`/users/${friend.id}`}
                     className='group flex relative'

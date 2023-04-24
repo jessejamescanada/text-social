@@ -14,6 +14,7 @@ export default async function handler(req, res) {
       where: { email: session.user.email },
     })
     console.log('GET FRIEND')
+    console.log(prismaUser.id)
 
     // create post
     try {

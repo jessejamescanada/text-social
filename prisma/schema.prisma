@@ -19,7 +19,7 @@ model User {
   favorites     Favorites[]
   posts         Post[]
   sessions      Session[]
-  User_A        User[]      @relation("UserFriends")
+  friends       User[]      @relation("UserFriends")
   User_B        User[]      @relation("UserFriends")
 }
 
