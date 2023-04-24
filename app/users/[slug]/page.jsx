@@ -60,7 +60,7 @@ const UsersPage = ({ params: { slug } }) => {
     removeUserFriend.mutate(slug)
   }
 
-  // if (isLoading) return 'Loading...'
+  if (isLoading) return 'Loading...'
 
   return (
     <div className='w-full flex flex-col items-center justify-center'>
