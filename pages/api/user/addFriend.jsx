@@ -33,12 +33,11 @@ export default async function handler(req, res) {
       // }
 
       // check so user doesnt add themselves
-      // if (prismaUser.id === slug) {
-
-      //   console.log('Same user')
-      //   res.status(422).json({ message: 'Cant add yourself' })
-      //   return
-      // }
+      if (prismaUser.id === slug) {
+        console.log('Same user')
+        res.status(422).json({ message: 'Cant add yourself' })
+        return
+      }
 
       const addUser = await prisma.user.update({
         where: {

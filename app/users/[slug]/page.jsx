@@ -76,6 +76,7 @@ const UsersPage = ({ params: { slug } }) => {
         <div className='flex flex-col sm:ml-5'>
           <div className='flex flex-col gap-4 items-center justify-center mb-2 p-4'>
             <h3>{data.name}</h3>
+            <p>{data.bio || ''}</p>
             <div className='flex gap-4'>
               <button
                 className='cursor-pointer bg-blue-500 font-semibold rounded-lg px-4 py-2'
@@ -91,8 +92,6 @@ const UsersPage = ({ params: { slug } }) => {
               </button>
             </div>
           </div>
-
-          <p>{data.bio || ''}</p>
         </div>
       </div>
       <h2 className='mt-2 mb-4'> Previous Posts</h2>
