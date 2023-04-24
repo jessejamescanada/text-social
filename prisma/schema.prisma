@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -10,76 +7,73 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
 model User {
-  id            String    @id @default(cuid())
-  name          String?
-  bio           String?   @db.VarChar(100)
-  email         String?   @unique
+  id            String      @id @default(cuid())
+  name          String?     @db.VarChar(20)
+  bio           String?     @db.VarChar(100)
+  email         String?     @unique
   emailVerified DateTime?
   image         String?
   accounts      Account[]
-  sessions      Session[]
-  posts         Post[]
   comments      Comment[]
   favorites     Favorites[]
-  friends       User[]    @relation("UserFriends")
-  symmetricFriends  User[] @relation("UserFriends")
+  posts         Post[]
+  sessions      Session[]
+  User_A        User[]      @relation("UserFriends")
+  User_B        User[]      @relation("UserFriends")
 }
 
-
 model Post {
-  id        String      @id @default(cuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  title     String   @db.VarChar(255)
-  name      String?
-  image     String?
-  email     String?
-  published Boolean  @default(false)
-  userId    String
-  user      User      @relation(fields: [userId], references: [id])
-  comments   Comment[]
+  id          String      @id @default(cuid())
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  title       String      @db.VarChar(255)
+  published   Boolean     @default(false)
+  userId      String
+  image       String?
+  name        String?
+  email       String?
+  comments    Comment[]
   favoritedBy Favorites[]
+  user        User        @relation(fields: [userId], references: [id])
 }
 
 model Favorites {
-  user       User     @relation(fields: [userId], references: [email])
-  userId     String  
-  post       Post @relation(fields: [postId], references: [id], onDelete: Cascade)
-  postId     String
+  userId String
+  postId String
+  post   Post   @relation(fields: [postId], references: [id], onDelete: Cascade)
+  user   User   @relation(fields: [userId], references: [email])
 
-   @@id([userId, postId])
+  @@id([userId, postId])
 }
 
-model Comment{
-  id      String    @id @default(cuid())
-  message String    @db.VarChar(100)
-  postId  String    
-  userId  String
-  userName String?
-  email   String
-  image   String?
-  createdAt  DateTime  @default(now())
-  post    Post      @relation(fields: [postId], references: [id], onDelete: Cascade)
-  user    User      @relation(fields: [userId], references: [id])
+model Comment {
+  id        String   @id @default(cuid())
+  message   String   @db.VarChar(100)
+  postId    String
+  userId    String
+  createdAt DateTime @default(now())
+  userName  String?
+  email     String
+  image     String?
+  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id])
 }
 
 model Account {
-  id                 String  @id @default(cuid())
-  userId             String
-  type               String
-  provider           String
-  providerAccountId  String
-  refresh_token      String?  @db.Text
-  access_token       String?  @db.Text
-  expires_at         Int?
-  token_type         String?
-  scope              String?
-  id_token           String?  @db.Text
-  session_state      String?
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
 }
@@ -91,8 +85,6 @@ model Session {
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
-
-
 
 model VerificationToken {
   identifier String
