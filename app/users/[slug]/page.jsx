@@ -1,9 +1,11 @@
 'use client'
+// import { useState } from 'react'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import axios from 'axios'
 import Image from 'next/image'
 import FetchUsersPosts from '../../../components/FetchUsersPosts'
 import userImage from '../../../public/userImage.png'
+import toast from 'react-hot-toast'
 
 const fetchUser = async (slug) => {
   const response = await axios.get(`/api/user/${slug}`)
@@ -16,6 +18,48 @@ const UsersPage = ({ params: { slug } }) => {
     queryKey: ['user-details'],
     queryFn: () => fetchUser(slug),
   })
+  console.log(data)
+  // console.log(slug)
+
+  const addUserFriend = useMutation(
+    async ({ slug }) => axios.put(`/api/user/addFriend`, { slug }),
+    {
+      onError: (error) => {
+        console.log('Error adding friend')
+        toast.error(`Sorry. Can't add yourself as a friend`)
+      },
+      onSuccess: (data) => {
+        console.log('Success adding friend!')
+        toast.success(`Added friend!`)
+      },
+    }
+  )
+
+  const handleAddFriend = (slug) => {
+    // console.log(slug)
+    addUserFriend.mutate({ slug })
+  }
+
+  const removeUserFriend = useMutation(
+    async (slug) =>
+      axios.delete(`/api/user/deleteFriend`, { params: { slug } }),
+    {
+      onError: (error) => {
+        console.log('Error removing friend')
+        toast.error(`Sorry. Can't delete yourself`)
+      },
+      onSuccess: (data) => {
+        console.log('Success adding friend!')
+        toast.success(`Removed friend successfuly`)
+      },
+    }
+  )
+
+  const handleRemoveFriend = (slug) => {
+    // console.log(slug)
+    removeUserFriend.mutate(slug)
+  }
+
   if (isLoading) return 'Loading...'
 
   return (
@@ -29,9 +73,23 @@ const UsersPage = ({ params: { slug } }) => {
           className='rounded-full'
         />
 
-        <div className='flex flex-col ml-5'>
-          <div className='flex flex-row gap-4 items-center mb-2'>
+        <div className='flex flex-col sm:ml-5'>
+          <div className='flex flex-col gap-4 items-center justify-center mb-2 p-4'>
             <h3>{data.name}</h3>
+            <div className='flex gap-4'>
+              <button
+                className='cursor-pointer bg-blue-500 font-semibold rounded-lg px-4 py-2'
+                onClick={() => handleAddFriend(slug)}
+              >
+                Add Friend
+              </button>
+              <button
+                className='cursor-pointer bg-red-500 font-semibold rounded-lg px-4 py-2'
+                onClick={() => handleRemoveFriend(slug)}
+              >
+                Remove Friend
+              </button>
+            </div>
           </div>
 
           <p>{data.bio || ''}</p>

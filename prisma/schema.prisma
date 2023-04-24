@@ -21,8 +21,10 @@ model User {
   accounts      Account[]
   sessions      Session[]
   posts         Post[]
-  comments       Comment[]
-  favorites Favorites[]
+  comments      Comment[]
+  favorites     Favorites[]
+  friends       User[]    @relation("UserFriends")
+  symmetricFriends  User[] @relation("UserFriends")
 }
 
 
@@ -31,6 +33,9 @@ model Post {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   title     String   @db.VarChar(255)
+  name      String?
+  image     String?
+  email     String?
   published Boolean  @default(false)
   userId    String
   user      User      @relation(fields: [userId], references: [id])

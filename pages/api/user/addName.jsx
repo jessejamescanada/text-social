@@ -9,12 +9,12 @@ export default async function handler(req, res) {
     if (!session)
       return res.status(401).json({ message: 'Please sign in to make a post' })
 
-    console.log(req.body.name)
+    // console.log(req.body.name)
     // GET USER
     const prismaUser = await prisma.user.findUnique({
       where: { email: session.user.email },
     })
-    console.log(prismaUser)
+    // console.log(prismaUser)
 
     // check title
     // if (bio.length > 300)
@@ -32,6 +32,17 @@ export default async function handler(req, res) {
           name: req.body.name,
         },
       })
+
+      const updateNameOnPosts = await prisma.post.updateMany({
+        where: {
+          userId: prismaUser.id,
+        },
+        data: {
+          name: req.body.name,
+        },
+      })
+      // console.log(updateNameOnPosts)
+
       res.status(200).json(result)
       console.log(result)
     } catch (error) {

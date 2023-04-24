@@ -19,10 +19,13 @@ const AddComment = ({ postId, comments, id, email, session }) => {
   const { mutate, isLoading } = useMutation(
     async (data) => axios.post(`/api/posts/addComment`, { data }),
     {
-      onSuccess: (data) => {
-        setTitle('')
-        queryClient.invalidateQueries(['all-posts'])
-      },
+      onSuccess: (data) =>
+        Promise.all([
+          setTitle(''),
+          queryClient.invalidateQueries(['get-friends']),
+          queryClient.invalidateQueries(['all-posts']),
+          queryClient.invalidateQueries(['dashboard-posts']),
+        ]),
       onError: (error) => {
         console.log(error)
         toast.error(`Error! Please make sure you're logged in`)
@@ -53,10 +56,13 @@ const AddComment = ({ postId, comments, id, email, session }) => {
         toast.error(`Error deleting your comment`)
         console.log(error)
       },
-      onSuccess: (data) => {
-        toast.success(`Your comment was deleted`)
-        queryClient.invalidateQueries(['all-posts'])
-      },
+      onSuccess: (data) =>
+        Promise.all([
+          toast.success(`Your comment was deleted`),
+          queryClient.invalidateQueries(['get-friends']),
+          queryClient.invalidateQueries(['all-posts']),
+          queryClient.invalidateQueries(['dashboard-posts']),
+        ]),
     }
   )
 

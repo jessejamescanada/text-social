@@ -21,6 +21,8 @@ export default async function handler(req, res) {
         },
         include: {
           user: true,
+          comments: true,
+          favoritedBy: true,
         },
         orderBy: {
           createdAt: 'desc',

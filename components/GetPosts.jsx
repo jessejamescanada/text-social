@@ -24,8 +24,10 @@ const GetPosts = ({ session }) => {
     getNextPageParam: (lastPage) => lastPage.nextId ?? false,
   })
 
-  if (isLoading) return <div className='loading'>Loading...</div>
+  if (isLoading)
+    return <div className='loading flex justify-center'>Loading...</div>
   if (isError) return <div>Error! {JSON.stringify(error)}</div>
+  console.log(data)
 
   return (
     <>
@@ -51,6 +53,7 @@ const GetPosts = ({ session }) => {
       <button
         onClick={() => fetchNextPage()}
         disabled={!hasNextPage || isFetchingNextPage}
+        className='flex items-center justify-center m-auto'
       >
         {isFetchingNextPage
           ? 'Loading more...'

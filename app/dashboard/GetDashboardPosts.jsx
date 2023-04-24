@@ -8,7 +8,7 @@ const dashboardPosts = async () => {
   return response.data
 }
 
-const GetDashboardPosts = () => {
+const GetDashboardPosts = ({ session }) => {
   const { data, error, isLoading } = useQuery({
     queryFn: dashboardPosts,
     queryKey: ['dashboard-posts'],
@@ -18,15 +18,20 @@ const GetDashboardPosts = () => {
   // console.log(data)
   return (
     <div className='w-full'>
-      {data
+      {/* {data
         ? data.map((post) => (
             <DisplayDashboardPost
               key={post.id}
               id={post.id}
               title={post.title}
+              post={post}
             />
           ))
-        : ''}
+        : ''} */}
+      <DisplayDashboardPost
+        data={data}
+        session={session}
+      />
     </div>
   )
 }

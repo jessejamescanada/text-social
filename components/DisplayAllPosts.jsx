@@ -91,6 +91,7 @@ const DisplayAllPosts = ({
               </h3>
             </div>
           </Link>
+          {/* favorites */}
           <div className='flex items-center w-[125px] justify-end gap-2 mr-4'>
             <div onClick={() => addtoFavs(postId, session.user.email)}>
               {session !== null ? (

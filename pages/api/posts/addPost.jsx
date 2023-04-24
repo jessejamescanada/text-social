@@ -17,6 +17,7 @@ export default async function handler(req, res) {
     const prismaUser = await prisma.user.findUnique({
       where: { email: session.user.email },
     })
+    console.log(prismaUser)
 
     // check title
     // if (title.length > 300)
@@ -30,6 +31,9 @@ export default async function handler(req, res) {
         data: {
           title,
           userId: prismaUser.id,
+          name: prismaUser.name,
+          image: prismaUser.image,
+          email: prismaUser.email,
         },
       })
       res.status(200).json(result)

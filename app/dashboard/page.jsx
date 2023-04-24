@@ -4,6 +4,8 @@ import { redirect } from 'next/navigation'
 import Image from 'next/image'
 import AddBio from './AddBio'
 import GetDashboardPosts from './GetDashboardPosts'
+// import GetUserFriends from '../..//components/GetUserFriends'
+import DisplayAddedFriends from './DisplayAddedFriends'
 import userImage from '../../public/userImage.png'
 
 const Dashboard = async () => {
@@ -15,7 +17,7 @@ const Dashboard = async () => {
   return (
     <main className='w-full'>
       <div className='flex flex-col items-center justify-center w-full sm:w-1/2 mx-auto px-4 sm:px-auto'>
-        <div className='flex flex-row  w-full  items-center my-3'>
+        <div className='flex flex-col  w-full  items-center my-3'>
           <div className='flex justify-evenly items-center  w-full h-[205px] '>
             <div className='w-1/2 flex items-center justify-center'>
               <Image
@@ -29,10 +31,11 @@ const Dashboard = async () => {
             </div>
             <AddBio />
           </div>
+          <DisplayAddedFriends />
         </div>
-
+        {/* <GetUserFriends /> */}
         <h2 className='text-lg my-3 font-semibold'>Your Posts</h2>
-        <GetDashboardPosts />
+        <GetDashboardPosts session={session} />
       </div>
     </main>
   )
