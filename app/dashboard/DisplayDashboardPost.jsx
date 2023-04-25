@@ -134,7 +134,7 @@ const DisplayDashboardPost = ({ id, title, data, session }) => {
                     {post.name ? post.name : post.email}
                   </p>
                 </Link>
-                <div className='flex items-center w-[80px] sm:w-[110px] justify-end gap-2 '>
+                <div className='flex items-center w-[80px] sm:w-[120px] justify-end gap-2 '>
                   <div
                     onClick={() =>
                       addtoFavs(post.id, session.user.email, post.favoritedBy)
