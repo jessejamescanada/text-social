@@ -127,7 +127,7 @@ const GetUserFriends = ({ session }) => {
                             )}
                           </div>
                           <p className='font-semibold'>
-                            {post.favoritedBy.length} favorites
+                            {post.favoritedBy.length} favs
                           </p>
                         </div>
                       </div>

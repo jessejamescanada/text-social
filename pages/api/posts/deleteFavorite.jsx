@@ -15,6 +15,7 @@ export default async function handler(req, res) {
 
     const postId = req.query.postId
     const email = req.query.email
+    console.log('DELETE FAV')
 
     try {
       const result = await prisma.favorites.deleteMany({

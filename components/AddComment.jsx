@@ -25,6 +25,8 @@ const AddComment = ({ postId, comments, id, email, session }) => {
           queryClient.invalidateQueries(['get-friends']),
           queryClient.invalidateQueries(['all-posts']),
           queryClient.invalidateQueries(['dashboard-posts']),
+          queryClient.invalidateQueries(['user-details']),
+          queryClient.invalidateQueries(['all-userPosts']),
         ]),
       onError: (error) => {
         console.log(error)
@@ -62,6 +64,8 @@ const AddComment = ({ postId, comments, id, email, session }) => {
           queryClient.invalidateQueries(['get-friends']),
           queryClient.invalidateQueries(['all-posts']),
           queryClient.invalidateQueries(['dashboard-posts']),
+          queryClient.invalidateQueries(['user-details']),
+          queryClient.invalidateQueries(['all-userPosts']),
         ]),
     }
   )
@@ -107,7 +111,7 @@ const AddComment = ({ postId, comments, id, email, session }) => {
                 className={
                   title.length > 80
                     ? 'text-red-600  flex justify-end'
-                    : 'text-text-gray-200  flex justify-end'
+                    : 'text-gray-100  flex justify-end'
                 }
               >
                 {100 - title.length}/100
@@ -120,7 +124,7 @@ const AddComment = ({ postId, comments, id, email, session }) => {
       </form>
       {/* display comments */}
       <h2
-        className='font-bold text-md cursor-pointer'
+        className='font-bold text-md cursor-pointer text-gray-100'
         onClick={() => setShowComment((prev) => !prev)}
       >
         {comments ? comments.length : '0'} Comments

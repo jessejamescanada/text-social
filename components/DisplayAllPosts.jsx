@@ -69,7 +69,7 @@ const DisplayAllPosts = ({
 
   return (
     <div className='w-full flex text-gray-700 px-4'>
-      <div className='flex flex-col w-full md:w-1/2 justify-center items-center mx-auto bg-gradient-to-br from-slate-900 to-slate-500 text-gray-300 mb-8 pt-4  pb-10 rounded-lg shadow-[0px_2px_4px_-2px_rgba(255,255,255,1)] '>
+      <div className='flex flex-col w-full md:w-1/2 justify-center items-center mx-auto bg-gradient-to-br from-slate-600 to-slate-300 text-gray-300 mb-8 pt-4  pb-10 rounded-lg shadow-[0px_2px_4px_-2px_rgba(255,255,255,1)] '>
         <div className='flex w-full justify-evenly sm:justify-between'>
           <div className='w-[1px] lg:w-[125px]'></div>
           <Link
@@ -86,7 +86,7 @@ const DisplayAllPosts = ({
                   className='rounded-full'
                 />
               </div>
-              <h3 className='font-bold text-text-gray-200 '>
+              <h3 className='font-bold text-gray-100 '>
                 {name ? name : email}
               </h3>
             </div>
@@ -98,13 +98,15 @@ const DisplayAllPosts = ({
                 favorites.some((x) => x.userId === session.user.email) ? (
                   <BsHeartFill className='cursor-pointer text-lg text-red-500' />
                 ) : (
-                  <BsHeart className='cursor-pointer text-lg' />
+                  <BsHeart className='cursor-pointer text-lg text-gray-100' />
                 )
               ) : (
                 ''
               )}
             </div>
-            <p className='font-semibold'>{favorites.length} favorites</p>
+            <p className='font-semibold text-gray-100'>
+              {favorites.length} favs
+            </p>
           </div>
         </div>
         {/*  */}

@@ -104,84 +104,88 @@ const DisplayDashboardPost = ({ id, title, data, session }) => {
     // </div>
     <div className='w-full'>
       {isLoading ? <div className='text-gray-200'>Deleting your post</div> : ''}
-      {data
-        ? data.map((post) => (
-            <div
-              key={post.id}
-              className='flex flex-col w-full  justify-center items-center mx-auto bg-gradient-to-br from-slate-900 to-slate-500 text-gray-300 mb-8 pt-4  pb-10 rounded-lg shadow-[0px_2px_4px_-2px_rgba(255,255,255,1)]'
-            >
-              <div className=' flex flex-col w-full justify-evenly sm:justify-between'>
-                <div className='flex w-full items-center justify-between gap-2 px-4'>
-                  {/* <div className='w-[1px] lg:w-[125px]'></div> */}
-                  <button
-                    onClick={() => deletePost(post.id)}
-                    className='w-[110px]'
+      {data ? (
+        data.map((post) => (
+          <div
+            key={post.id}
+            className='flex flex-col w-full  justify-center items-center mx-auto bg-gradient-to-br from-slate-600 to-slate-300 text-gray-300 mb-8 pt-4  pb-10 rounded-lg shadow-[0px_2px_4px_-2px_rgba(255,255,255,1)]'
+          >
+            <div className=' flex flex-col w-full justify-evenly sm:justify-between'>
+              <div className='flex w-full items-center justify-between gap-2 px-4'>
+                <div className='w-[1px] lg:w-[125px]'></div>
+                <button
+                  onClick={() => deletePost(post.id)}
+                  className='w-[80px] sm:w-[110px]'
+                >
+                  <RiDeleteBin6Line className='text-gray-200' />{' '}
+                </button>
+                <Link
+                  href={`/users/${post.userId}`}
+                  className='flex w-[180px] items-center gap-2'
+                >
+                  <Image
+                    src={post.image ? post.image : userImage}
+                    height={32}
+                    width={32}
+                    alt='profile-image'
+                    className='rounded-full'
+                  />
+                  {/*  include user email as backup for no name */}
+                  <p className='font-bold text-text-gray-200 '>
+                    {post.name ? post.name : post.email}
+                  </p>
+                </Link>
+                <div className='flex items-center w-[80px] sm:w-[110px] justify-end gap-2 '>
+                  <div
+                    onClick={() =>
+                      addtoFavs(post.id, session.user.email, post.favoritedBy)
+                    }
                   >
-                    <RiDeleteBin6Line className='text-gray-200' />{' '}
-                  </button>
-                  <Link
-                    href={`/users/${post.userId}`}
-                    className='flex w-[160px] items-center gap-2'
-                  >
-                    <Image
-                      src={post.image ? post.image : userImage}
-                      height={32}
-                      width={32}
-                      alt='profile-image'
-                      className='rounded-full'
-                    />
-                    {/* change this '' to post.email when you update schema for posts to include user email as backup for no name */}
-                    <p className='font-bold text-text-gray-200 '>
-                      {post.name ? post.name : post.email}
-                    </p>
-                  </Link>
-                  <div className='flex items-center w-[110px] justify-end gap-2 '>
-                    <div
-                      onClick={() =>
-                        addtoFavs(post.id, session.user.email, post.favoritedBy)
-                      }
-                    >
-                      {session !== null ? (
-                        post.favoritedBy.some(
-                          (x) => x.userId === session.user.email
-                        ) ? (
-                          <BsHeartFill className='cursor-pointer text-lg text-red-500' />
-                        ) : (
-                          <BsHeart className='cursor-pointer text-lg' />
-                        )
+                    {session !== null ? (
+                      post.favoritedBy.some(
+                        (x) => x.userId === session.user.email
+                      ) ? (
+                        <BsHeartFill className='cursor-pointer text-lg text-red-500' />
                       ) : (
-                        ''
-                      )}
-                    </div>
-                    <p className='font-semibold'>
-                      {post.favoritedBy.length} favorites
-                    </p>
+                        <BsHeart className='cursor-pointer text-lg' />
+                      )
+                    ) : (
+                      ''
+                    )}
                   </div>
+                  <p className='font-semibold'>
+                    {post.favoritedBy.length} favs
+                  </p>
                 </div>
-                <div className='my-8  h-[220px] lg:h-[180px] w-full px-2 lg:px-[70px]'>
-                  <div className='bg-gray-950 flex items-center justify-center  h-full w-full p-3 sm:p-5 rounded-lg'>
-                    <p
-                      className='break-normal
+              </div>
+              <div className='my-8  h-[220px] lg:h-[180px] w-full px-2 lg:px-[70px]'>
+                <div className='bg-gray-950 flex items-center justify-center  h-full w-full p-3 sm:p-5 rounded-lg'>
+                  <p
+                    className='break-normal
                   text-center
                   font-semibold
                   text-lg
                   tracking-wide'
-                    >
-                      {post.title}
-                    </p>
-                  </div>
+                  >
+                    {post.title}
+                  </p>
                 </div>
               </div>
-
-              <AddComment
-                session={session}
-                postId={post.id}
-                id={post.userId}
-                comments={post.comments}
-              />
             </div>
-          ))
-        : ''}
+
+            <AddComment
+              session={session}
+              postId={post.id}
+              id={post.userId}
+              comments={post.comments}
+            />
+          </div>
+        ))
+      ) : (
+        <div>
+          <p>You haven't made any posts yet!</p>
+        </div>
+      )}
     </div>
   )
 }

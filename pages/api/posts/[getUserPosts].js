@@ -7,6 +7,10 @@ export default async function handler(req, res) {
         where: {
           userId: req.query.getUserPosts,
         },
+        include: {
+          comments: true,
+          favoritedBy: true,
+        },
         orderBy: {
           createdAt: 'desc',
         },

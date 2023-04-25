@@ -21,11 +21,11 @@ const DisplayAddedFriends = () => {
   console.log(data)
   return (
     <div className='w-full flex justify-center'>
-      <div className='w-1/2 flex flex-col justify-center'>
+      <div className='w-full sm:w-1/2 flex flex-col justify-center'>
         <h2 className='flex  justify-center items-center font-semibold text-lg mb-2'>
           Friends
         </h2>
-        <div className='w-full gap-2 flex items-center justify-center bg-gray-100 p-8 rounded-lg'>
+        <div className='w-full gap-2 flex items-center justify-center bg-gray-100 px-4 py-10 sm:px-8 sm:py-8 rounded-lg'>
           {data
             ? data.friends.map((friend) => (
                 <div key={friend.id}>
