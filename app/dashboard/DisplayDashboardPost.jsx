@@ -102,7 +102,7 @@ const DisplayDashboardPost = ({ id, title, data, session }) => {
     //     </div>
     //   </div>
     // </div>
-    <div className='w-full'>
+    <div className='w-full '>
       {isLoading ? <div className='text-gray-200'>Deleting your post</div> : ''}
       {data ? (
         data.map((post) => (
@@ -112,7 +112,6 @@ const DisplayDashboardPost = ({ id, title, data, session }) => {
           >
             <div className=' flex flex-col w-full justify-evenly sm:justify-between'>
               <div className='flex w-full items-center justify-between gap-2 px-4'>
-                <div className='w-[1px] lg:w-[125px]'></div>
                 <button
                   onClick={() => deletePost(post.id)}
                   className='w-[80px] sm:w-[110px]'

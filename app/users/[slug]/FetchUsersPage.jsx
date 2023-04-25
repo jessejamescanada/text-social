@@ -62,7 +62,7 @@ const FetchUsersPage = ({ slug, session }) => {
 
   if (isLoading) return 'Loading...'
   return (
-    <div className='w-full flex flex-col items-center justify-center'>
+    <div className='w-full max-w-7xl flex flex-col items-center justify-center'>
       <div className='flex flex-col sm:flex-row w-full sm:w-1/2 justify-center items-center my-4'>
         <Image
           src={data.image ? data.image : userImage}

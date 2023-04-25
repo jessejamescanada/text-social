@@ -10,7 +10,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang='en'>
-      <body className='flex flex-col min-h-screen items-center pb-8  bg-gradient-to-b from-slate-600 to-slate-800 text-gray-200 max-w-7xl mx-auto overflow-hidden mx-4 '>
+      <body className='flex flex-col min-h-screen items-center pb-8  bg-gradient-to-b from-slate-600 to-slate-800 text-gray-200  mx-auto overflow-hidden  '>
         <QueryWrapper>
           <Header />
           <div className='w-full h-[3px] bg-zinc-500'></div>

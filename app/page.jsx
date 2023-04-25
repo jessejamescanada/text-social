@@ -15,7 +15,7 @@ const Home = async () => {
   // const session = await getSessions()
   // console.log(session)
   return (
-    <main className='w-full flex flex-col items-center justify-center '>
+    <main className='w-full max-w-7xl flex flex-col items-center justify-center '>
       <Searchbar session={session} />
       <ShowFriendsOnlyButton session={session} />
       {/* <GetPosts session={session} /> */}

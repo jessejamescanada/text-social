@@ -15,7 +15,7 @@ const Dashboard = async () => {
   }
 
   return (
-    <main className='w-full'>
+    <main className='w-full max-w-7xl'>
       <div className='flex flex-col items-center justify-center w-full sm:w-1/2 mx-auto px-4 sm:px-auto'>
         <div className='flex flex-col  w-full  items-center my-3'>
           <div className='flex justify-evenly items-center  w-full h-[205px] '>
