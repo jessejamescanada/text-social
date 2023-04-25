@@ -10,7 +10,7 @@ const Header = async () => {
 
   return (
     <nav className='w-full flex items-center justify-end pt-8 pb-6 bg-gradient-to-r from-slate-900 to-slate-500'>
-      <div className='w-full max-w-7xl flex items-center justify-end sm:justify-center'>
+      <div className='w-full max-w-7xl flex items-center justify-end m-auto'>
         <ul className='flex items-center gap-6 pr-6'>
           <Link href={'/'}>
             <h1 className='text-gray-100 font-semibold'>Home</h1>

@@ -75,7 +75,7 @@ const FetchUsersPosts = ({ slug, session }) => {
   if (isLoading) return 'Loading...'
 
   return (
-    <div className='w-full flex text-gray-700 '>
+    <div className='w-full flex text-gray-700 px-4'>
       <div className='w-full'>
         {data &&
           data.map((post) => (
@@ -127,14 +127,8 @@ const FetchUsersPosts = ({ slug, session }) => {
                   </div>
                 </div>
                 <div className='my-8  h-[220px] lg:h-[180px] w-full px-2 lg:px-[70px]'>
-                  <div className='bg-gray-950 flex items-center justify-center  h-full w-full p-3 sm:p-5 rounded-lg'>
-                    <p
-                      className='break-normal
-                  text-center
-                  font-semibold
-                  text-lg
-                  tracking-wide'
-                    >
+                  <div className='bg-zinc-200 flex items-center justify-center  h-full w-full p-3 sm:p-5 rounded-lg'>
+                    <p className='break-normal text-center font-semibold text-lg tracking-wide text-gray-700'>
                       {post.title}
                     </p>
                   </div>

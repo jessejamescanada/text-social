@@ -71,7 +71,7 @@ const Searchbar = ({ session }) => {
       </div>
       {error ? (
         <p className='text-red-600 font-semibold text-center py-2'>
-          Please enter a post!
+          Post can`&apos;`t be empty
         </p>
       ) : (
         ''

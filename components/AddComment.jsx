@@ -30,7 +30,9 @@ const AddComment = ({ postId, comments, id, email, session }) => {
         ]),
       onError: (error) => {
         console.log(error)
-        toast.error(`Error! Please make sure you're logged in`)
+        if (!session) {
+          toast.error(`Error! Please make sure you're logged in`)
+        }
       },
     }
   )
@@ -89,39 +91,43 @@ const AddComment = ({ postId, comments, id, email, session }) => {
       ) : (
         ''
       )}
-      <form
-        onSubmit={submitComment}
-        className='w-full'
-      >
-        {addComment ? (
-          <div className='flex flex-col my-2'>
-            <input
-              type='text'
-              onChange={(e) => setTitle(e.target.value)}
-              value={title}
-              name='title'
-              placeholder='Add a comment...'
-              className='px-4 py-2 text-lg rounded-md  mb-1 bg-slate-900 shadow-[0px_2px_4px_-2px_rgba(255,255,255,1)] focus:outline-none  focus:placeholder-transparent'
-              maxLength={100}
-            />
-            {isLoading ? <div>Adding your comment</div> : ''}
-            {deleteComment.isLoading ? <div>Deleting your comment</div> : ''}
-            <div className='flex items-center justify-end '>
-              <p
-                className={
-                  title.length > 80
-                    ? 'text-red-600  flex justify-end'
-                    : 'text-gray-100  flex justify-end'
-                }
-              >
-                {100 - title.length}/100
-              </p>
+      {session ? (
+        <form
+          onSubmit={submitComment}
+          className='w-full'
+        >
+          {addComment ? (
+            <div className='flex flex-col my-2'>
+              <input
+                type='text'
+                onChange={(e) => setTitle(e.target.value)}
+                value={title}
+                name='title'
+                placeholder='Add a comment...'
+                className='px-4 py-2 text-lg rounded-md  mb-1 bg-slate-900 shadow-[0px_2px_4px_-2px_rgba(255,255,255,1)] focus:outline-none  focus:placeholder-transparent'
+                maxLength={100}
+              />
+              {isLoading ? <div>Adding your comment</div> : ''}
+              {deleteComment.isLoading ? <div>Deleting your comment</div> : ''}
+              <div className='flex items-center justify-end '>
+                <p
+                  className={
+                    title.length > 80
+                      ? 'text-red-600  flex justify-end'
+                      : 'text-gray-100  flex justify-end'
+                  }
+                >
+                  {100 - title.length}/100
+                </p>
+              </div>
             </div>
-          </div>
-        ) : (
-          ''
-        )}
-      </form>
+          ) : (
+            ''
+          )}
+        </form>
+      ) : (
+        ''
+      )}
       {/* display comments */}
       <h2
         className='font-bold text-md cursor-pointer text-gray-100'

@@ -6,6 +6,7 @@ import Image from 'next/image'
 import FetchUsersPosts from './FetchUsersPosts'
 import userImage from '../../../public/userImage.png'
 import toast from 'react-hot-toast'
+import { FaTimes, FaPlus } from 'react-icons/fa'
 
 const fetchUser = async (slug) => {
   const response = await axios.get(`/api/user/${slug}`)
@@ -78,16 +79,19 @@ const FetchUsersPage = ({ slug, session }) => {
             <p>{(data && data.bio) || ''}</p>
             <div className='flex gap-4'>
               <button
-                className='cursor-pointer bg-blue-500 font-semibold rounded-lg px-4 py-2'
+                className='cursor-pointer flex gap-1 items-center bg-blue-500 font-semibold rounded-lg px-4 py-2 disabled:opacity-50 disabled:cursor-default'
+                disabled={!session}
                 onClick={() => handleAddFriend(slug)}
               >
-                Add Friend
+                <FaPlus /> Friend
               </button>
               <button
-                className='cursor-pointer bg-red-500 font-semibold rounded-lg px-4 py-2'
+                className='cursor-pointer flex gap-1 items-center bg-red-500 font-semibold rounded-lg px-4 py-2 disabled:opacity-50 disabled:cursor-default'
+                disabled={!session}
                 onClick={() => handleRemoveFriend(slug)}
               >
-                Remove Friend
+                <FaTimes />
+                Friend
               </button>
             </div>
           </div>
