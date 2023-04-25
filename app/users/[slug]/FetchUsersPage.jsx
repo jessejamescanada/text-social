@@ -65,7 +65,7 @@ const FetchUsersPage = ({ slug, session }) => {
     <div className='w-full max-w-7xl flex flex-col items-center justify-center'>
       <div className='flex flex-col sm:flex-row w-full sm:w-1/2 justify-center items-center my-4'>
         <Image
-          src={data && data.image ? data.image : userImage}
+          src={data.image ? data.image : userImage}
           height={80}
           width={80}
           alt='image'
@@ -74,8 +74,8 @@ const FetchUsersPage = ({ slug, session }) => {
 
         <div className='flex flex-col sm:ml-5'>
           <div className='flex flex-col gap-4 items-center justify-center mb-2 p-4'>
-            <h3>{data && data.name}</h3>
-            <p>{(data && data.bio) || ''}</p>
+            <h3>{data.name}</h3>
+            <p>{data.bio || ''}</p>
             <div className='flex gap-4'>
               <button
                 className='cursor-pointer bg-blue-500 font-semibold rounded-lg px-4 py-2'

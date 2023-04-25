@@ -4,9 +4,9 @@ import FetchUsersPage from './FetchUsersPage'
 
 const UsersPage = async ({ params: { slug } }) => {
   const session = await getServerSession(authOptions)
-  if (!session) {
-    redirect('/api/auth/signin')
-  }
+  // if (!session) {
+  //   redirect('/api/auth/signin')
+  // }
 
   return (
     <FetchUsersPage
