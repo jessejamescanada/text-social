@@ -84,8 +84,8 @@ const FetchUsersPosts = ({ slug, session }) => {
               className='flex flex-col w-full md:w-1/2 justify-center items-center mx-auto bg-gradient-to-br from-slate-600 to-slate-300 text-gray-300 mb-8 pt-4  pb-10 rounded-lg shadow-[0px_2px_4px_-2px_rgba(255,255,255,1)] '
             >
               <div className=' flex flex-col w-full justify-evenly sm:justify-between'>
-                <div className='flex w-full items-center justify-between gap-2 px-4'>
-                  <div className='w-[80px] lg:w-[125px]'></div>
+                <div className='flex w-full items-center sm:justify-between justify-end gap-2 px-4'>
+                  <div className='w-[1px] sm:w-[125px]'></div>
 
                   <Link
                     href={`/users/${post.userId}`}

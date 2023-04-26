@@ -120,7 +120,7 @@ const DisplayDashboardPost = ({ id, title, data, session }) => {
                 </button>
                 <Link
                   href={`/users/${post.userId}`}
-                  className='flex w-[180px] items-center gap-2'
+                  className='flex w-[180px] items-center justify-center gap-2'
                 >
                   <Image
                     src={post.image ? post.image : userImage}
