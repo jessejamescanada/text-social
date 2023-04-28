@@ -18,7 +18,6 @@ const FetchUsersPosts = ({ slug, session }) => {
     queryFn: () => fetchAllUserPosts(slug),
     queryKey: ['all-userPosts'],
   })
-  // console.log(data)
 
   const addFavs = useMutation(
     async ({ postId, email }) =>

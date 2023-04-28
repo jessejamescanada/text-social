@@ -15,26 +15,9 @@ export default async function handler(req, res) {
     })
     const slug = req.body.slug
 
-    console.log(slug)
-
     try {
-      // const checkFriend = await prisma.user.findUnique({
-      //   where: {
-      //     id: prismaUser.id,
-      //   },
-      //   include: {
-      //     friends: true,
-      //   },
-      // })
-      // console.log(checkFriend)
-      // if (checkFriend.friends[0].id === slug) {
-      //   res.status(400).json({ message: 'Already friends!' })
-      //   return
-      // }
-
       // check so user doesnt add themselves
       if (prismaUser.id === slug) {
-        console.log('Same user')
         res.status(422).json({ message: 'Cant add yourself' })
         return
       }

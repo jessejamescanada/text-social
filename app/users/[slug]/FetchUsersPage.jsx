@@ -6,38 +6,49 @@ import Image from 'next/image'
 import FetchUsersPosts from './FetchUsersPosts'
 import userImage from '../../../public/userImage.png'
 import toast from 'react-hot-toast'
-import { FaTimes, FaPlus } from 'react-icons/fa'
+import { FaTimes, FaPlus, FaCheck } from 'react-icons/fa'
 
+// get user and get users friends
 const fetchUser = async (slug) => {
   const response = await axios.get(`/api/user/${slug}`)
   return response.data
 }
+const getFriends = async () => {
+  const response = await axios.get(`/api/user/getFriend`)
+  return response.data
+}
 
 const FetchUsersPage = ({ slug, session }) => {
+  const queryClient = useQueryClient()
   // fetch user details
   const { data, isLoading } = useQuery({
     queryKey: ['user-details'],
     queryFn: () => fetchUser(slug),
   })
-  console.log(data)
-  console.log(session)
 
   const addUserFriend = useMutation(
     async ({ slug }) => axios.put(`/api/user/addFriend`, { slug }),
     {
       onError: (error) => {
-        console.log('Error adding friend')
-        toast.error(`Sorry. Unable to add friend`)
+        console.log(error)
+        toast.error(error.response.data.message)
       },
       onSuccess: (data) => {
-        console.log('Success adding friend!')
-        toast.success(`Added friend!`)
+        Promise.all([
+          queryClient.invalidateQueries(['user-details']),
+          queryClient.invalidateQueries(['getting-friends']),
+        ]),
+          toast.success(`Added friend!`)
       },
     }
   )
 
+  const { data: userData } = useQuery({
+    queryFn: () => getFriends(),
+    queryKey: ['getting-friends'],
+  })
+
   const handleAddFriend = (slug) => {
-    // console.log(slug)
     addUserFriend.mutate({ slug })
   }
 
@@ -50,14 +61,17 @@ const FetchUsersPage = ({ slug, session }) => {
         toast.error(`Sorry. Unable to delete friend`)
       },
       onSuccess: (data) => {
-        console.log('Success adding friend!')
+        Promise.all([
+          queryClient.invalidateQueries(['user-details']),
+          queryClient.invalidateQueries(['getting-friends']),
+        ]),
+          console.log('Success adding friend!')
         toast.success(`Removed friend successfuly`)
       },
     }
   )
 
   const handleRemoveFriend = (slug) => {
-    // console.log(slug)
     removeUserFriend.mutate(slug)
   }
 
@@ -78,13 +92,40 @@ const FetchUsersPage = ({ slug, session }) => {
             <h3>{data && data.name}</h3>
             <p>{(data && data.bio) || ''}</p>
             <div className='flex gap-4'>
-              <button
-                className='cursor-pointer flex gap-1 items-center bg-blue-500 font-semibold rounded-lg px-4 py-2 disabled:opacity-50 disabled:cursor-default'
+              <div
+                className='cursor-pointer flex gap-1 items-center bg-blue-500 font-semibold rounded-lg  disabled:opacity-50 disabled:cursor-default'
                 disabled={!session}
                 onClick={() => handleAddFriend(slug)}
               >
-                <FaPlus /> Friend
-              </button>
+                {/* how to render 'Add Friend' Button or disable it */}
+                {userData && data ? (
+                  userData.friends.some((friend) => {
+                    if (friend.email === data.email) {
+                      return true // return true if they are friends
+                    } else {
+                      return false // return false if they are not friends
+                    }
+                  }) ? (
+                    <button
+                      className='flex items-center gap-1 px-4 py-2 disabled:opacity-75 disabled:text-white disabled:cursor-default'
+                      disabled={true}
+                    >
+                      <FaCheck /> Friends
+                    </button> // if at least one friend matches, display 'Friends'
+                  ) : (
+                    <span className='flex items-center gap-1 px-4 py-2'>
+                      <FaPlus /> Friend
+                    </span>
+                  ) // if no friends match, display '+Friends'
+                ) : (
+                  <button
+                    className='flex items-center gap-1 px-4 py-2 disabled:opacity-50 disabled:text-white disabled:cursor-default'
+                    disabled={true}
+                  >
+                    <FaPlus /> Friends
+                  </button>
+                )}
+              </div>
               <button
                 className='cursor-pointer flex gap-1 items-center bg-red-500 font-semibold rounded-lg px-4 py-2 disabled:opacity-50 disabled:cursor-default'
                 disabled={!session}

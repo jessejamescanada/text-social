@@ -4,7 +4,6 @@ import prisma from '../../../prisma/client'
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
-    // make sure theyre logged in before making a post, if not then throw 401 error
     const session = await getServerSession(req, res, authOptions)
     if (!session) return res.status(401).json({ message: 'Please sign in' })
 
@@ -12,8 +11,6 @@ export default async function handler(req, res) {
     const prismaUser = await prisma.user.findUnique({
       where: { email: session.user.email },
     })
-
-    console.log(prismaUser)
 
     try {
       const { title, postId } = req.body.data
@@ -34,7 +31,7 @@ export default async function handler(req, res) {
       })
       res.status(200).json(result)
     } catch (error) {
-      res.status(403).json({ err: 'Error has occured while deleting post' })
+      res.status(403).json({ err: 'Error posting your comment' })
     }
   }
 }

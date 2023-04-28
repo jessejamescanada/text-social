@@ -10,7 +10,6 @@ import { BsHeart, BsHeartFill } from 'react-icons/bs'
 import AddComment from '../../components/AddComment'
 
 const DisplayDashboardPost = ({ id, title, data, session }) => {
-  // console.log(data)
   const queryClient = useQueryClient()
   // delete post
   const { mutate, isLoading } = useMutation(
@@ -35,6 +34,7 @@ const DisplayDashboardPost = ({ id, title, data, session }) => {
     mutate(id)
   }
 
+  // favorites
   const addFavs = useMutation(
     async ({ postId, email }) =>
       axios.post(`/api/posts/addFavorite`, {
@@ -72,7 +72,6 @@ const DisplayDashboardPost = ({ id, title, data, session }) => {
 
   const addtoFavs = (val1, val2, favorites) => {
     const userIdinFav = favorites.some((x) => x.userId === val2)
-
     if (favorites.length === 0) {
       addFavs.mutate({ postId: val1, email: val2 })
     } else if (!userIdinFav) {
@@ -84,24 +83,6 @@ const DisplayDashboardPost = ({ id, title, data, session }) => {
     }
   }
   return (
-    // <div className='w-full flex flex-col text-gray-700 '>
-    //   {isLoading ? <div className='text-gray-200'>Deleting your post</div> : ''}
-    //   <div className='flex flex-col w-full justify-center items-center mx-auto bg-gradient-to-br from-slate-900 to-slate-500 text-gray-300 mb-8 pt-4 pr-1 pb-8 rounded-lg shadow-[0px_2px_4px_-2px_rgba(255,255,255,1)]'>
-    //     <div className='flex w-full items-end justify-end'>
-    //       <button onClick={deletePost}>
-    //         {' '}
-    //         <RiDeleteBin6Line className='text-gray-200' />
-    //       </button>
-    //     </div>
-    //     <div className=' my-8  h-[220px] lg:h-[180px] w-full px-2 lg:px-[70px]'>
-    //       <div className='bg-gray-950 flex items-center justify-center  h-full w-full p-3 sm:p-5 rounded-lg'>
-    //         <p className=' break-normal  text-center font-semibold text-lg tracking-wide'>
-    //           {title}
-    //         </p>
-    //       </div>
-    //     </div>
-    //   </div>
-    // </div>
     <div className='w-full '>
       {isLoading ? <div className='text-gray-200'>Deleting your post</div> : ''}
       {data ? (
@@ -140,6 +121,7 @@ const DisplayDashboardPost = ({ id, title, data, session }) => {
                       addtoFavs(post.id, session.user.email, post.favoritedBy)
                     }
                   >
+                    {/* check if logged in user already fav post */}
                     {session !== null ? (
                       post.favoritedBy.some(
                         (x) => x.userId === session.user.email

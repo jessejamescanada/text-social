@@ -15,19 +15,8 @@ const GetDashboardPosts = ({ session }) => {
   })
   if (error) return error
   if (isLoading) return 'Loading...'
-  // console.log(data)
   return (
     <div className='w-full'>
-      {/* {data
-        ? data.map((post) => (
-            <DisplayDashboardPost
-              key={post.id}
-              id={post.id}
-              title={post.title}
-              post={post}
-            />
-          ))
-        : ''} */}
       <DisplayDashboardPost
         data={data}
         session={session}

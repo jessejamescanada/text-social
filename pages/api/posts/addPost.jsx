@@ -9,21 +9,18 @@ export default async function handler(req, res) {
     if (!session)
       return res.status(401).json({ message: 'Please sign in to make a post' })
 
-    // if user logged in
-
     const title = req.body.postInput
 
     // GET USER
     const prismaUser = await prisma.user.findUnique({
       where: { email: session.user.email },
     })
-    console.log(prismaUser)
 
-    // check title
-    // if (title.length > 300)
-    //   return res.status(403).json({ message: 'Please write a shorter post' })
-    // if (!title.length)
-    //   return res.status(403).json({ message: "Please don't leave this empty" })
+    // check post length
+    if (title.length > 255)
+      return res.status(403).json({ message: 'Please write a shorter post' })
+    if (!title.length)
+      return res.status(403).json({ message: "Please don't leave this empty" })
 
     // create post
     try {
@@ -38,7 +35,7 @@ export default async function handler(req, res) {
       })
       res.status(200).json(result)
     } catch (error) {
-      res.status(403).json({ err: 'Error has occured while making post' })
+      res.status(403).json({ err: 'Error has occurred while making post' })
     }
   }
 }

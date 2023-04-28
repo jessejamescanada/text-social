@@ -49,7 +49,7 @@ const AddComment = ({ postId, comments, id, email, session }) => {
     mutate({ title, postId })
   }
 
-  // delete comment
+  // delete comment call
   const deleteComment = useMutation(
     async ({ userEmail, commentId }) =>
       axios.delete('/api/posts/deleteComment', {
@@ -72,7 +72,7 @@ const AddComment = ({ postId, comments, id, email, session }) => {
     }
   )
 
-  // delete comment
+  // delete comment function
   const compareDelete = (val1, val2, val3) => {
     if (session.user.email === val1) {
       deleteComment.mutate({ userEmail: val1, commentId: val3 })

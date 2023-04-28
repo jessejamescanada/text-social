@@ -5,13 +5,12 @@ import { authOptions } from '../auth/[...nextauth]'
 export default async function handler(req, res) {
   if (req.method === 'GET') {
     const session = await getServerSession(req, res, authOptions)
-    if (!session)
-      return res.status(401).json({ message: 'Please sign in to make a post' })
+    if (!session) return res.status(401).json({ message: 'Please sign in ' })
 
     const prismaUser = await prisma.user.findUnique({
       where: { email: session.user.email },
     })
-    // console.log(prismaUser.id)
+
     try {
       const data = await prisma.post.findMany({
         where: {

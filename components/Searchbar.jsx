@@ -69,6 +69,7 @@ const Searchbar = ({ session }) => {
           )}
         </div>
       </div>
+      {/* error message */}
       {error ? (
         <p className='text-red-600 font-semibold text-center py-2'>
           Post can`&apos;`t be empty

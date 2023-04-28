@@ -4,7 +4,6 @@ import { redirect } from 'next/navigation'
 import Image from 'next/image'
 import AddBio from './AddBio'
 import GetDashboardPosts from './GetDashboardPosts'
-// import GetUserFriends from '../..//components/GetUserFriends'
 import DisplayAddedFriends from './DisplayAddedFriends'
 import userImage from '../../public/userImage.png'
 
@@ -33,7 +32,6 @@ const Dashboard = async () => {
           </div>
           <DisplayAddedFriends />
         </div>
-        {/* <GetUserFriends /> */}
         <h2 className='text-lg my-3 font-semibold'>Your Posts</h2>
         <GetDashboardPosts session={session} />
       </div>

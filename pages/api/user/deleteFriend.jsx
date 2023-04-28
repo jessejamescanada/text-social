@@ -4,7 +4,6 @@ import prisma from '../../../prisma/client'
 
 export default async function handler(req, res) {
   if (req.method === 'DELETE') {
-    // make sure theyre logged in before making a post, if not then throw 401 error
     const session = await getServerSession(req, res, authOptions)
     if (!session)
       return res.status(401).json({ message: 'Please sign in to make a post' })
@@ -15,10 +14,8 @@ export default async function handler(req, res) {
     })
     const slug = req.query.slug
 
-    // create post
     try {
       if (prismaUser.id === slug) {
-        console.log('Same delete cant user')
         res.status(422).json({ message: 'Cant delete yourself' })
         return
       }

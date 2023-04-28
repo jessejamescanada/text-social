@@ -18,10 +18,7 @@ const GetUserFriends = ({ session }) => {
     queryFn: getFriends,
     queryKey: ['get-friends', 'all-posts'],
   })
-  //   if (error) return error
-  //   if (isLoading) return 'Loading...'
 
-  //
   // add favorite
   const { mutate } = useMutation(
     async ({ postId, email }) =>
@@ -72,7 +69,9 @@ const GetUserFriends = ({ session }) => {
     }
   }
 
-  console.log(data)
+  if (error) return error
+  if (isLoading) return <div className='text-center'>Loading...</div>
+
   return (
     <div className='w-full  text-gray-200 px-4'>
       {data && data.friends.length !== 0 ? (
