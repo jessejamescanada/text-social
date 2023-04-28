@@ -26,7 +26,8 @@ const GetPosts = ({ session }) => {
 
   if (isLoading)
     return <div className='loading flex justify-center'>Loading...</div>
-  if (isError) return <div>Error! {JSON.stringify(error)}</div>
+  if (isError)
+    return <div className='text-center'>Error! {JSON.stringify(error)}</div>
   console.log(data)
 
   return (

@@ -157,8 +157,8 @@ const DisplayDashboardPost = ({ id, title, data, session }) => {
           </div>
         ))
       ) : (
-        <div>
-          <p>You haven`&apos;`t made any posts yet!</p>
+        <div className='text-center'>
+          <p>You haven&apos;t made any posts yet!</p>
         </div>
       )}
     </div>
