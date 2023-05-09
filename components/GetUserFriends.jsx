@@ -132,7 +132,7 @@ const GetUserFriends = ({ session }) => {
                       </div>
                       <div className='my-8  h-[220px] lg:h-[180px] w-full px-2 lg:px-[70px]'>
                         <div className='bg-zinc-200 flex items-center justify-center  h-full w-full p-3 sm:p-5 rounded-lg'>
-                          <p className='break-normal text-center font-semibold text-lg tracking-wide text-gray-700'>
+                          <p className='break-all text-center font-semibold text-lg tracking-wide text-gray-700'>
                             {post.title}
                           </p>
                         </div>

@@ -69,7 +69,7 @@ const DisplayAllPosts = ({
 
   return (
     <div className='w-full flex text-gray-700 px-4'>
-      <div className='flex flex-col w-full md:w-1/2 justify-center items-center mx-auto bg-gradient-to-br from-slate-600 to-slate-300 text-gray-300 mb-8 pt-4  pb-10 rounded-lg shadow-[0px_2px_4px_-2px_rgba(255,255,255,1)] '>
+      <div className='flex flex-col z-10 w-full md:w-1/2 justify-center items-center mx-auto bg-gradient-to-br from-slate-600 to-slate-300 text-gray-300 mb-8 pt-4  pb-10 rounded-lg shadow-[0px_2px_4px_-2px_rgba(255,255,255,1)] '>
         <div className='flex w-full justify-end sm:justify-between '>
           <div className='w-[1px] lg:w-[125px]'></div>
           <Link
@@ -109,7 +109,7 @@ const DisplayAllPosts = ({
         </div>
         <div className=' my-8  h-[220px] lg:h-[180px] w-full px-2 lg:px-[70px]'>
           <div className='bg-zinc-200 flex items-center justify-center  h-full w-full p-3 sm:p-5 rounded-lg'>
-            <p className='break-normal text-gray-700 text-center font-semibold text-lg tracking-wide'>
+            <p className='break-all text-gray-700 text-center font-semibold text-lg tracking-wide'>
               {title}
             </p>
           </div>

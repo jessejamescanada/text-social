@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import axios, { AxiosError } from 'axios'
+import Messenger from './Messenger'
 
 const Searchbar = ({ session }) => {
   const [postInput, setPostInput] = useState('')
@@ -44,6 +45,7 @@ const Searchbar = ({ session }) => {
   }
   return (
     <div className='flex flex-col w-full py-4 mt-4 '>
+      {/* <Messenger session={session} /> */}
       <div className='flex flex-col w-full mx-auto  items-center mb-8'>
         <form
           className='flex flex-col sm:flex-row w-3/4 sm:w-1/2 justify-center items-center'

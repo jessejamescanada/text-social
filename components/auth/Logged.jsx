@@ -5,7 +5,7 @@ import Image from 'next/image'
 
 const Logged = ({ image }) => {
   return (
-    <li className='flex gap-6 items-center'>
+    <li className='flex gap-2 sm:gap-6 items-center'>
       <button
         onClick={() =>
           signOut({ callbackUrl: 'https://text-social.vercel.app/' })

@@ -20,7 +20,7 @@ const ShowFriendsOnlyButton = ({ session }) => {
   }
 
   return (
-    <div className='w-full'>
+    <div className='w-full '>
       <div className='flex justify-center  gap-5 mb-5'>
         <button
           className={`${
