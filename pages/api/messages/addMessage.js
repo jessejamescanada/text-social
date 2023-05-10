@@ -17,7 +17,7 @@ export default async function handler(req, res) {
 
   //   push to redis db
   await redis.hset(message.uniqueId, message.id, JSON.stringify(newMessage))
-  serverPusher.trigger(message.uniqueId, 'new-message', newMessage)
+  await serverPusher.trigger(message.uniqueId, 'new-message', newMessage)
 
   res.status(200).json({ message: newMessage })
 }
