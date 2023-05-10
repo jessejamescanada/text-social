@@ -4,9 +4,10 @@ import TimeAgo from 'react-timeago'
 const MessageComponent = ({ message, session }) => {
   const isUser = session?.user?.email === message.email
 
+  // get users first name to display in chat
   const firstName = message.username.split(' ')
   const name = firstName[0]
-  console.log(message)
+  // console.log(message)
   return (
     <div className={`flex w-fit items-center ${isUser && 'ml-auto'}`}>
       <div className={`flex-shrink-0 ${isUser && 'order-2'}`}>

@@ -10,7 +10,9 @@ const ChatInput = ({ session, uniqueId }) => {
     data: messages,
     error,
     mutate,
-  } = useSWR(`/api/messages/getMessages`, fetcher)
+  } = useSWR(['/api/messages/getMessages', uniqueId], ([url, uniqueId]) =>
+    fetcher(url, uniqueId)
+  )
 
   const addMessage = async (e) => {
     e.preventDefault()
@@ -50,6 +52,8 @@ const ChatInput = ({ session, uniqueId }) => {
       rollbackOnError: true,
     })
   }
+  if (error) return <div>failed to load</div>
+  if (!messages) return <div>loading...</div>
   return (
     <form
       onSubmit={addMessage}
