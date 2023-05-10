@@ -8,13 +8,11 @@ const ShowFriendsOnlyButton = ({ session }) => {
   const [showFriends, setShowFriends] = useState(false)
 
   const showOnlyFriendsPosts = () => {
-    console.log('friends')
     setShowFriends(true)
     setShowAllPosts(false)
   }
 
   const showAllUsersPosts = () => {
-    console.log('all')
     setShowFriends(false)
     setShowAllPosts(true)
   }

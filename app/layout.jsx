@@ -4,6 +4,7 @@ import Header from '../components/Header'
 
 import { getServerSession } from 'next-auth/next'
 import { authOptions } from '../pages/api/auth/[...nextauth]'
+import Messenger from '@/components/Messenger'
 
 export const metadata = {
   title: 'Text Social',
@@ -19,7 +20,13 @@ export default async function RootLayout({ children }) {
           <Header session={session} />
 
           <div className='w-full h-[3px] bg-zinc-500'></div>
-          {children}
+          <div className='flex flex-col w-full sm:flex-row'>
+            <div className='w-[20%]'>
+              <Messenger session={session} />
+            </div>
+            {children}
+            <div className='w-[1%] lg:w-[20%]'></div>
+          </div>
         </QueryWrapper>
       </body>
     </html>

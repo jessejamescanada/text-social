@@ -14,7 +14,7 @@ const MessageList = ({
   friendsName,
   setFriendsName,
 }) => {
-  console.log(uniqueId)
+  // console.log(uniqueId)
   const {
     data: messages,
     error,
@@ -44,7 +44,7 @@ const MessageList = ({
 
   if (error) return <div>failed to load</div>
   if (messages === undefined) return <div>loading...</div>
-  console.log(messages)
+  // console.log(messages)
   return (
     <div className='overflow-y-auto z-50 space-y-2 px-2  pb-10 w-full max-w-2xl xl:max-w-4xl mx-auto rounded-b-lg'>
       <ModalBackButton

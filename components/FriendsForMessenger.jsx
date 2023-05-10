@@ -40,7 +40,7 @@ const FriendsForMessenger = ({ session, friendsName, setFriendsName }) => {
     <div className='overflow-y-auto h-[90%] sm:h-[370px] w-full flex justify-start '>
       <div className='w-full  flex flex-col justify-start pt-2 px-2'>
         {clickedFriend ? (
-          <>
+          <div className='flex flex-col justify-between h-full'>
             <MessageList
               session={session}
               uniqueId={uniqueId}
@@ -52,7 +52,7 @@ const FriendsForMessenger = ({ session, friendsName, setFriendsName }) => {
               session={session}
               uniqueId={uniqueId}
             />
-          </>
+          </div>
         ) : (
           ''
         )}

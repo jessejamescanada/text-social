@@ -80,7 +80,7 @@ const FetchUsersPosts = ({ slug, session }) => {
           data.map((post) => (
             <div
               key={post.id}
-              className='flex flex-col w-full md:w-1/2 justify-center items-center mx-auto bg-gradient-to-br from-slate-600 to-slate-300 text-gray-300 mb-8 pt-4  pb-10 rounded-lg shadow-[0px_2px_4px_-2px_rgba(255,255,255,1)] '
+              className='flex flex-col w-full md:w-3/4 justify-center items-center mx-auto bg-gradient-to-br from-slate-600 to-slate-300 text-gray-300 mb-8 pt-4  pb-10 rounded-lg shadow-[0px_2px_4px_-2px_rgba(255,255,255,1)] '
             >
               <div className=' flex flex-col w-full justify-evenly sm:justify-between'>
                 <div className='flex w-full items-center sm:justify-between justify-end gap-2 px-4'>
